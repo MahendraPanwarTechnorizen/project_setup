@@ -12,25 +12,38 @@ class CreateTodoWidget extends StatefulWidget {
 }
 
 class _CreateTodoWidgetState extends State<CreateTodoWidget> {
-  TextEditingController controller =TextEditingController();
+  setData(context)async{
+    Provider.of<MyProvider>(context,listen: true).controller.text=widget.todo!.title!;
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    if(widget.todo!=null)
+    setData(context);
+  }
   @override
   Widget build(BuildContext context) {
     final isEditing = widget.todo!=null;
-    return AlertDialog(
-      title: Text(isEditing ? 'Edit Todo ':"Add Todo"),
-      content: TextFormField(
-        autofocus: true,
-        controller: controller,
-      ),
-      actions: [
-        TextButton(onPressed: (){
-          Navigator.pop(context);
-        }, child: Text("cancel")),
-        TextButton(onPressed: (){
-          widget.onSubmit(controller.text);
+    return Consumer<MyProvider>(
+      builder: (context,value,child) {
+        return AlertDialog(
+          title: Text(isEditing ? 'Edit Todo ':"Add Todo"),
+          content: TextFormField(
+            autofocus: true,
+            controller: value.controller,
+          ),
+          actions: [
+            TextButton(onPressed: (){
+              Navigator.pop(context);
+            }, child: Text("cancel")),
+            TextButton(onPressed: (){
+              widget.onSubmit(value.controller.text);
 
-        }, child: Text("ok")),
-      ],
+            }, child: Text("ok")),
+          ],
+        );
+      }
     );
   }
 }

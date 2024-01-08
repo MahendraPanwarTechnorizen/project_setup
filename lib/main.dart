@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
     SDP.init(context);
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         appBarTheme:  AppBarTheme(
           color: AppColors.primary,
