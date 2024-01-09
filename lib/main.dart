@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project_setup/Providers/AuthProvider.dart';
+import 'package:project_setup/Screen/SplashScreen.dart';
 import 'package:project_setup/Screen/SqliteCurdScreen.dart';
 import 'package:project_setup/Utils/AppColors.dart';
 import 'package:project_setup/Utils/BottomNavigationBar.dart';
@@ -14,6 +16,7 @@ void main() {
     MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (_) => MyProvider()),
+      ChangeNotifierProvider(create: (_) => AuthProvider()),
     ],
     child: const MyApp(),
   ),);
@@ -58,7 +61,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
 
       ),
-      home: const CurdOperation(),
+      home: const SplashScreen(),
     );
   }
 }

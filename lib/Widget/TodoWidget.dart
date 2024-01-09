@@ -12,15 +12,11 @@ class CreateTodoWidget extends StatefulWidget {
 }
 
 class _CreateTodoWidgetState extends State<CreateTodoWidget> {
-  setData(context)async{
-    Provider.of<MyProvider>(context,listen: true).controller.text=widget.todo!.title!;
-  }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    if(widget.todo!=null)
-    setData(context);
   }
   @override
   Widget build(BuildContext context) {

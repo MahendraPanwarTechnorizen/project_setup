@@ -184,6 +184,7 @@ class CommonWidgets {
         double? elevation,
         ButtonStyle? style,
         BoxBorder? border,
+        required BuildContext context,
         required VoidCallback onPressed,
         required Widget child}) {
     return Container(
@@ -201,7 +202,7 @@ class CommonWidgets {
               elevation: elevation ?? 0.px,
               padding: contentPadding,
               textStyle: textStyle ??
-                  Theme.of(MyGlobalKeys.navigatorKey!.currentContext!)
+                  Theme.of(context)
                       .textTheme
                       .displayMedium
                       ?.copyWith(fontWeight: FontWeight.w700),
@@ -209,9 +210,9 @@ class CommonWidgets {
                 borderRadius: BorderRadius.circular(borderRadius ?? 30.px),
               ),
               backgroundColor:
-              buttonColor ?? Theme.of(MyGlobalKeys.navigatorKey!.currentContext!).colorScheme.primary,
+              buttonColor ?? Theme.of(context).colorScheme.primary,
               foregroundColor:
-              splashColor ?? Theme.of(MyGlobalKeys.navigatorKey!.currentContext!).scaffoldBackgroundColor,
+              splashColor ?? Theme.of(context).scaffoldBackgroundColor,
               shadowColor: Colors.transparent,
             ),
         child: child,

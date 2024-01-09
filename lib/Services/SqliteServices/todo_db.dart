@@ -14,14 +14,17 @@ class TodoDB {
     "title" TEXT NOT NULL,
     "created_at" INTEGER NOT NULL DEFAULT (cast(strftime('%s', 'now') as int)),
     "updated_at" INTEGER,
+    "image" BLOB ,
     PRIMARY KEY ("id" AUTOINCREMENT)
   );
 """);
   }
-  Future<int> create({required String title})async{
+  Future<int> create({required String title,required String image})async{
     print("title------$title");
     final database = await DatabaseServices().database;
-    return await database.rawInsert('''INSERT INTO $tableName (title,created_at) VALUES (?,?)''',[title,DateTime.now().millisecondsSinceEpoch]);
+    return await database.rawInsert('''INSERT INTO $tableName (title,
+    created_at,image) VALUES (?,?,?)''',[title,DateTime.now()
+        .millisecondsSinceEpoch,image]);
   }
   Future<List<TodoList>>fetchAll()async{
     final database=await DatabaseServices().database;
